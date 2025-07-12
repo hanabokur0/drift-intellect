@@ -47,7 +47,6 @@ if "selected_word" not in st.session_state:
 if st.button("🌊 単語を流す / Refresh words"):
     st.session_state.words = random.sample(wordlist, 5)
     st.session_state.selected_word = None
-
 # 単語ボタン表示
 st.markdown("### 浮かび上がる単語たち / Floating Words")
 for i, word in enumerate(st.session_state.words):
@@ -59,13 +58,12 @@ if st.session_state.selected_word:
     st.markdown("----")
     st.markdown(f"### 🧭 選んだ単語: `{st.session_state.selected_word}`")
     st.markdown("🔍 意味を表示中...")
-    
-    # シンプルな辞書代替（後でAI説明と置換可）
-    dummy_explanations = {
-        "slime mold": "A primitive organism used in studying network formation.",
-        "粘菌": "ネットワーク構造の研究にも使われる原始的な単細胞生物。",
-        # 他の単語も必要に応じて追加
-    }
-    
-    meaning = dummy_explanations.get(st.session_state.selected_word, "（意味の表示は今後の機能で追加されます）")
+
+    # 辞書ファイルを読み込み（日本語 or 英語）
+    dict_filename = "dict_ja.json" if lang == "日本語" else "dict_en.json"
+    with open(dict_filename, "r", encoding="utf-8") as f:
+        dictionary = json.load(f)
+
+    # 意味を取得＆表示
+    meaning = dictionary.get(st.session_state.selected_word, "（まだ意味が登録されていません）")
     st.markdown(f"**{meaning}**")
