@@ -64,3 +64,28 @@ if "log" in st.session_state and st.session_state.log:
     st.markdown("### 📜 今日のドリフト記録 / Drift Log")
     for entry in st.session_state.log:
         st.markdown(f"- **{entry['word']}**: {entry['meaning']}")
+        
+# --- コンパス生成（直近3つのジャンル分析） ---
+if "log" in st.session_state and len(st.session_state.log) >= 3:
+    st.markdown("----")
+    st.markdown("### 🧭 今日の知的コンパス / Your Drift Compass")
+
+    # ジャンル辞書を読み込み
+    cat_file = "dict_category_ja.json" if lang == "日本語" else "dict_category_en.json"
+    try:
+        with open(cat_file, "r", encoding="utf-8") as f:
+            categories = json.load(f)
+    except FileNotFoundError:
+        categories = {}
+
+    # 最新3つの単語からジャンル集計
+    recent_entries = st.session_state.log[-3:]
+    genre_count = {}
+    for entry in recent_entries:
+        word = entry["word"]
+        genre = categories.get(word, "未分類")
+        genre_count[genre] = genre_count.get(genre, 0) + 1
+
+    # 最頻ジャンルを選出
+    main_genre = max(genre_count, key=genre_count.get)
+    st.success(f"🌟 あなたの今日の関心は「**{main_genre}**」に向かっています。")
