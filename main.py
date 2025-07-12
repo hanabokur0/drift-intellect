@@ -50,8 +50,8 @@ if st.button("🌊 単語を流す / Refresh words"):
 
 # 単語ボタン表示
 st.markdown("### 浮かび上がる単語たち / Floating Words")
-for word in st.session_state.words:
-    if st.button(word):
+for i, word in enumerate(st.session_state.words):
+    if st.button(word, key=f"word_btn_{i}"):
         st.session_state.selected_word = word
 
 # 選んだ単語の意味を表示（プレーンテキスト例）
