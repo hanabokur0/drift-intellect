@@ -34,5 +34,5 @@ AIと共に意味を掘り下げていくことで、自分の知的コンパス
 
 ## 開発者
 
-Created by [君の名前 or ハンドルネーム]  
+Created by [hanabokuro]  
 Follow the journey on GitHub and beyond.
