@@ -1,11 +1,11 @@
 [
-  "slime mold",
+  "slime mold": "A primitive organism known for its network-like growth.",
   "element",
   "airship",
   "lichen",
   "velociraptor",
   "parasite",
-  "quartz",
+  "quartz": "A mineral composed mainly of SiO₂, often used in watches.",
   "insulation",
   "free will",
   "jungle",
@@ -29,4 +29,5 @@
   "spirit",
   "drifting",
   "volcanic rock"
+  "Minakata Kumagusu": "A Japanese naturalist known for studying slime molds and nature conservation."
 ]
